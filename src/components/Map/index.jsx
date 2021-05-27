@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 
-import './Map.css';
+import styles from './index.module.scss';
 import LeafletMarker from '../LeafletMarker';
 
 export default function Map() {
@@ -11,7 +11,7 @@ export default function Map() {
   
   return (
     <MapContainer
-      className="Map"
+      className={styles.Map}
       center={position}
       zoom={17}
     >
