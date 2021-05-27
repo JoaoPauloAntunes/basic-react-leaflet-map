@@ -24,7 +24,7 @@ export default function Map() {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      <LeafletMarker />
+      <LeafletMarker position={[-22.70229075344503, -47.64773499552624]} />
     </MapContainer>
   )
 }
