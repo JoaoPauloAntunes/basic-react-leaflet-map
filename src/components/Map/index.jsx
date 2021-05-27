@@ -4,7 +4,7 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 
 import './Map.css';
-// import LeafletMarker from '../LeafletMarker';
+import LeafletMarker from '../LeafletMarker';
 
 export default function Map() {
   const position = [-22.702959852402834, -47.6508851690044];
@@ -24,7 +24,7 @@ export default function Map() {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      {/* <LeafletMarker /> */}
+      <LeafletMarker />
     </MapContainer>
   )
 }
