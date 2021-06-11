@@ -10,11 +10,9 @@ import styles from './index.module.scss';
 import LeafletMarker from '../LeafletMarker';
 
 export default function Map() {
-  const position = [-22.702959852402834, -47.6508851690044];
-  const bounds = new LatLngBounds([-22.67422532958089, -47.694191054655036], [-22.789762031685466, -47.583489833625414]);
-  const url = "http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg";
-
   const [imageOverlayProps, setImageOverlayProps] = useState(null);
+
+  const position = [-22.702959852402834, -47.6508851690044];
 
   useEffect(() => {
     console.log({"imageOverlayProps": imageOverlayProps});
@@ -23,16 +21,13 @@ export default function Map() {
     }
 
     fetch("https://qbyz6tll1a.execute-api.sa-east-1.amazonaws.com/default/teste-image-overlay")
-    .then(async (response) => {
+    .then(async function(response) {
       console.log({"response": response});
-      const data = await response.json();
+      
+      return response.json();
+    })
+    .then(function(data) {
       console.log({"data": data});
-
-      // const {
-      //   area,
-      //   bounds,
-      //   url,
-      // } = data;
 
       setImageOverlayProps(data);
     });
@@ -53,14 +48,20 @@ export default function Map() {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-      {imageOverlayProps & (
+      {imageOverlayProps && (
         <ImageOverlay
-          url={imageOverlayProps?.url}
-          bounds={imageOverlayProps?.bounds}
+          url={imageOverlayProps.url}
+          bounds={imageOverlayProps.bounds}
           opacity={0.5}
           zIndex={10}
         />
       )}
+      {/* <ImageOverlay
+        url={"https://lh3.googleusercontent.com/proxy/zH2qNFf0kHKJGwXANMrYO-AOdVbRxq2J2Ylr_e5VcEAE6z9pq5c4E4tYytI_JvdYQ4z01XMFf2nFLxMqi8A-X1NJdy_51KzWv3VIxZqUwcB0XJJD0Plsmbe4CWNnnvpm5YeF7aIfVznrYHUaoQUarxjPWLF3u5Ly0ByBRw"}
+        bounds={[[-22.115343, -48.260603], [-23.854831, -46.373387]]}
+        opacity={0.5}
+        zIndex={10}
+      /> */}
       <LeafletMarker position={[-22.70229075344503, -47.64773499552624]} />
     </MapContainer>
   )
